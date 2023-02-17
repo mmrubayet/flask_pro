@@ -49,3 +49,6 @@ Or, install from `requirements.txt` file:
 ----------
 * Tips:
 - Use `pip freeze > requirements.txt` for exporting requirements.
+----------
+## Run Flask app
+Run the app with `python app.py`
