@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
@@ -39,6 +39,15 @@ app.add_url_rule('/blog/', 'blog', blog)
 app.add_url_rule('/blog/<int:bid>/', 'blog_details', blog_details)
 app.add_url_rule('/version/<float:ver>/', 'version', version)
 app.add_url_rule('/to/<path:path>/', 'path_to', path_to)
+
+
+@app.route("/site-map")
+def site_map():
+    links = []
+    for rule in app.url_map.iter_rules():
+        links.append((rule.endpoint, rule.rule))
+    return links
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
