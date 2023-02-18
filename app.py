@@ -4,6 +4,11 @@ app = Flask(__name__)
 
 
 @app.route('/')
+def index():
+    return "This is a flask app."
+
+
+@app.route('/hello')
 def hello_world():
     return "Hello World!"
 
