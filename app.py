@@ -1,4 +1,6 @@
-from flask import Flask, url_for
+from flask import Flask
+from utils import generate_sitemap
+
 
 app = Flask(__name__)
 
@@ -43,10 +45,7 @@ app.add_url_rule('/to/<path:path>/', 'path_to', path_to)
 
 @app.route("/site-map")
 def site_map():
-    links = []
-    for rule in app.url_map.iter_rules():
-        links.append((rule.endpoint, rule.rule))
-    return links
+    return generate_sitemap(app.url_map)
 
 
 if __name__ == '__main__':
