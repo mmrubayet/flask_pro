@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 from utils import generate_sitemap
 
 
@@ -17,11 +17,18 @@ def hello_to(name):
     return f"Hello, {name}!"
 
 
-def login(user):
-    if user == 'admin':
-        return redirect(url_for('hello'))
+@app.route('/success/<name>')
+def success(name):
+    return f"Welcome {name}!"
+
+
+def login():
+    if request.method == 'POST':
+        user = request.form['name']
+        return redirect(url_for('success', name=user))
     else:
-        return redirect(url_for('hello_to', name=user))
+        user = request.args.get('name')
+        return redirect(url_for('success', name=user))
 
 
 def blog():
@@ -43,7 +50,7 @@ def path_to(path):
 app.add_url_rule('/', 'index', index)
 app.add_url_rule('/hello/', 'hello', hello_world)
 app.add_url_rule('/hello/<name>/', 'hello_to', hello_to)
-app.add_url_rule('/login/<user>/', 'login', login)
+app.add_url_rule('/login/', 'login', login, methods=['POST', 'GET'])
 
 
 app.add_url_rule('/blog/', 'blog', blog)
