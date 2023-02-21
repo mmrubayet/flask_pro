@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 from utils import generate_sitemap
 
 
@@ -14,7 +14,7 @@ def hello_world():
 
 
 def hello_to(name):
-    return f"Hello, {name}!"
+    return render_template('hello.html', name=name)
 
 
 @app.route('/success/<name>')
