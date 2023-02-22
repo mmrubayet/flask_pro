@@ -13,8 +13,8 @@ def hello_world():
     return "Hello Admin!"
 
 
-def hello_to(name):
-    return render_template('hello.html', name=name)
+def hello_to(name, mark):
+    return render_template('hello.html', name=name, mark=mark)
 
 
 @app.route('/success/<name>')
@@ -49,7 +49,7 @@ def path_to(path):
 
 app.add_url_rule('/', 'index', index)
 app.add_url_rule('/hello/', 'hello', hello_world)
-app.add_url_rule('/hello/<name>/', 'hello_to', hello_to)
+app.add_url_rule('/hello/<name>/<int:mark>', 'hello_to', hello_to)
 app.add_url_rule('/login/', 'login', login, methods=['POST', 'GET'])
 
 
