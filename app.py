@@ -17,6 +17,11 @@ def hello_to(name, mark):
     return render_template('hello.html', name=name, mark=mark)
 
 
+def result(name):
+    marks = {'phy': 50, 'che': 60, 'maths': 70}
+    return render_template('result.html', name=name, result=marks)
+
+
 @app.route('/success/<name>')
 def success(name):
     return f"Welcome {name}!"
@@ -50,6 +55,7 @@ def path_to(path):
 app.add_url_rule('/', 'index', index)
 app.add_url_rule('/hello/', 'hello', hello_world)
 app.add_url_rule('/hello/<name>/<int:mark>', 'hello_to', hello_to)
+app.add_url_rule('/result/<name>/', 'result', result)
 app.add_url_rule('/login/', 'login', login, methods=['POST', 'GET'])
 
 

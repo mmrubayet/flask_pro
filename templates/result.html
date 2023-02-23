@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+	<body>
+		<h1>Hello, {% if name %} {{ name }} {% else %} Student {% endif %}!</h1>
+		<div>
+			<h1>Your Marks:</h1>
+			<table border = 1>
+			{% for key, value in result.items() %}
+				<tr>
+					<th> {{ key }} </th>
+					<td> {{ value }} </td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
